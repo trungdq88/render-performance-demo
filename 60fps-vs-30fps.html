@@ -1,0 +1,50 @@
+<style>
+    #container {
+        width: 500px;
+        height: 500px;
+        background: lightgray;
+    }
+
+    .bird {
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+        box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.5);
+        position: absolute;
+        background: lightpink;
+        top: 0;
+        left: 0;
+        transition: top 2s linear, left 2s linear;
+        will-change: transform;
+    }
+</style>
+<div id="container">
+
+</div>
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script>
+    // Number of birds
+    var n = 50;
+
+    // Create the birds
+    for (var i = 0; i < n; i++) {
+        var $bird = $('<div class="bird"></div>');
+        $('#container').append($bird);
+    }
+
+    // Move the birds
+    $('.bird').each(function () {
+        setTimeout((function ($this1) {
+            return function () {
+                setInterval((function ($this2) {
+                    return function () {
+                        $this2.css({
+                            top: Math.round(Math.random() * 500),
+                            left: Math.round(Math.random() * 500)
+                        })
+                    }
+                })($this1), 2000);
+            }
+        })($(this)), Math.round(Math.random() * 5000));
+    });
+</script>
