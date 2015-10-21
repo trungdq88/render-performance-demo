@@ -9,12 +9,13 @@
         width: 50px;
         height: 50px;
         border-radius: 25px;
-        box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.5);
+        box-shadow: 20px 20px 60px rgba(0, 0, 0, 1);
         position: absolute;
         background: lightpink;
         top: 0;
         left: 0;
         transition: top 2s linear, left 2s linear;
+        will-change: transform;
     }
 </style>
 <div id="container">
@@ -23,7 +24,7 @@
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>
     // Number of birds
-    var n = 50;
+    var n = 30;
 
     // Create the birds
     for (var i = 0; i < n; i++) {
