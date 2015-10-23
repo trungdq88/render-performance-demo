@@ -31,18 +31,8 @@
         $('#container').append($bird);
     }
 
-    // Move the birds
-    $('.bird').each(function () {
-        setTimeout((function (delayedStartBird) {
-            return function () {
-                setInterval((function ($bird) {
-                    return action.bind(this, $bird);
-                })(delayedStartBird), 2000);
-            }
-        })($(this)), Math.round(Math.random() * 5000));
-    });
-
-    function action($bird) {
+    // This method moves the birds
+    function fly($bird) {
         var newPosition = {
             top: Math.round(Math.random() * 450),
             left: Math.round(Math.random() * 450)
@@ -51,4 +41,15 @@
             transform: 'translate3d(' + newPosition.top + 'px, ' + newPosition.left + 'px, 0)',
         });
     }
+
+    // This makes the birds move randomly and continuously
+    $('.bird').each(function () {
+        setTimeout((function (delayedBird) {
+            return function () {
+                setInterval((function ($bird) {
+                    return fly.bind(this, $bird);
+                })(delayedBird), 2000);
+            }
+        })($(this)), Math.round(Math.random() * 5000));
+    });
 </script>
