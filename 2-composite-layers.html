@@ -15,6 +15,7 @@
         top: 0;
         left: 0;
         transition: top 2s linear, left 2s linear;
+        will-change: transform;
     }
 </style>
 <div id="container">
@@ -33,17 +34,19 @@
 
     // Move the birds
     $('.bird').each(function () {
-        setTimeout((function ($this1) {
+        setTimeout((function (delayedStartBird) {
             return function () {
-                setInterval((function ($this2) {
-                    return function () {
-                        $this2.css({
-                            top: Math.round(Math.random() * 450),
-                            left: Math.round(Math.random() * 450)
-                        })
-                    }
-                })($this1), 2000);
+                setInterval((function ($bird) {
+                    return action.bind(this, $bird);
+                })(delayedStartBird), 2000);
             }
         })($(this)), Math.round(Math.random() * 5000));
     });
+
+    function action($bird) {
+        $bird.css({
+            top: Math.round(Math.random() * 450),
+            left: Math.round(Math.random() * 450)
+        });
+    }
 </script>

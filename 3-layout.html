@@ -12,9 +12,8 @@
         box-shadow: 20px 20px 60px rgba(0, 0, 0, 1);
         position: absolute;
         background: lightpink;
-        top: 0;
-        left: 0;
-        transition: top 2s linear, left 2s linear;
+        transform: translate3d(0, 0, 0);
+        transition: transform 2s linear;
         will-change: transform;
     }
 </style>
@@ -34,17 +33,22 @@
 
     // Move the birds
     $('.bird').each(function () {
-        setTimeout((function ($this1) {
+        setTimeout((function (delayedStartBird) {
             return function () {
-                setInterval((function ($this2) {
-                    return function () {
-                        $this2.css({
-                            top: Math.round(Math.random() * 450),
-                            left: Math.round(Math.random() * 450)
-                        })
-                    }
-                })($this1), 2000);
+                setInterval((function ($bird) {
+                    return action.bind(this, $bird);
+                })(delayedStartBird), 2000);
             }
         })($(this)), Math.round(Math.random() * 5000));
     });
+
+    function action($bird) {
+        var newPosition = {
+            top: Math.round(Math.random() * 450),
+            left: Math.round(Math.random() * 450)
+        };
+        $bird.css({
+            transform: 'translate3d(' + newPosition.top + 'px, ' + newPosition.left + 'px, 0)',
+        });
+    }
 </script>
