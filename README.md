@@ -50,7 +50,7 @@ Improve by create separate composite layer for each moving elements
         transition: top 2s linear, left 2s linear;
         /* These 2 lines will force browser to create new composite layer for .bird */
         will-change: transform;
-        transform: translateZ(0); // For unsupported browsers
+        transform: translateZ(0); /* For unsupported browsers */
     }
 ```
 
