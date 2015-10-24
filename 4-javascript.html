@@ -1,0 +1,57 @@
+<style>
+    #container {
+        width: 500px;
+        height: 500px;
+        background: lightgray;
+    }
+
+    .bird {
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+        box-shadow: 20px 20px 60px rgba(0, 0, 0, 1);
+        position: absolute;
+        background: lightpink;
+        transform: translate3d(0, 0, 0);
+        transition: transform 2s linear;
+        will-change: transform;
+    }
+</style>
+<div id="container">
+
+</div>
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script>
+    // Number of birds
+    var n = 30;
+
+    // Create the birds
+    for (var i = 0; i < n; i++) {
+        var $bird = $('<div class="bird"></div>');
+        $('#container').append($bird);
+    }
+
+    // This method moves the birds
+    function fly($bird) {
+        var newPosition = {
+            top: Math.round(Math.random() * 450),
+            left: Math.round(Math.random() * 450)
+        };
+        requestAnimationFrame(function () {
+            $bird.css({
+                transform: 'translate3d(' + newPosition.top + 'px, ' + newPosition.left + 'px, 0)',
+            });
+        })
+    }
+
+    // This makes the birds move randomly and continuously
+    $('.bird').each(function () {
+        setTimeout((function (delayedBird) {
+            return function () {
+                setInterval((function ($bird) {
+                    return fly.bind(this, $bird);
+                })(delayedBird), 2000);
+            }
+        })($(this)), Math.round(Math.random() * 5000));
+    });
+</script>
