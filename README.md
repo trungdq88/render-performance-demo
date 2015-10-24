@@ -48,7 +48,7 @@ Improve by create separate composite layer for each moving elements
         top: 0;
         left: 0;
         transition: top 2s linear, left 2s linear;
-        // These 2 lines will force browser to create new composite layer for .bird
+        /* These 2 lines will force browser to create new composite layer for .bird */
         will-change: transform;
         transform: translateZ(0); // For unsupported browsers
     }
@@ -66,7 +66,7 @@ More improve: use `transform: translate3d(...)` to move the element instead of `
         box-shadow: 20px 20px 60px rgba(0, 0, 0, 1);
         position: absolute;
         background: lightpink;
-        // Use transform: translate3d instead of top, left to move elements
+        /* Use transform: translate3d instead of top, left to move elements */
         transform: translate3d(0, 0, 0);
         transition: transform 2s linear;
         will-change: transform;
